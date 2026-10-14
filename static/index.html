@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f5f1fa">
+  <title>ИИ-диспетчер обращений</title>
+
+  <link rel="stylesheet" href="/style.css">
+</head>
+
+<body>
+  <main class="app">
+    <header class="topbar">
+      <div class="brand">
+        <div class="brand-mark" aria-hidden="true">✦</div>
+        <p class="brand-name">ШКОЛЬНАЯ ТЕХПОДДЕРЖКА</p>
+      </div>
+
+      <div class="theme-picker">
+        <label for="theme">Цвет</label>
+        <select id="theme" aria-label="Цветовая тема">
+          <option value="violet">Лаванда</option>
+          <option value="ocean">Океан</option>
+          <option value="sunset">Терракота</option>
+          <option value="forest">Лес</option>
+        </select>
+      </div>
+    </header>
+
+    <section class="hero">
+      <div>
+        <p class="eyebrow">Помощь рядом</p>
+        <h1>Диспетчер обращений</h1>
+        <p class="intro">Введите обращение. Ответ модели можно проверить и исправить вручную.</p>
+      </div>
+    </section>
+
+    <section class="panel">
+      <h2>Новое обращение</h2>
+      <p class="hint">Опишите проблему и, если знаете, укажите кабинет и срочность.</p>
+
+      <form id="form">
+        <label for="text" class="hint">Текст обращения</label>
+        <textarea id="text" required maxlength="1000"
+          placeholder="Например: В кабинете 12 не включается проектор, урок уже начался"></textarea>
+
+        <div class="form-footer">
+          <span class="muted">До 1000 символов</span>
+          <button id="submit" type="submit">Определить</button>
+        </div>
+      </form>
+      <p id="status" role="status" aria-live="polite"></p>
+    </section>
+
+    <section>
+      <div class="section-heading">
+        <div>
+          <h2>Результаты</h2>
+          <p id="count">Обработано: 0</p>
+        </div>
+        <button class="secondary" id="test-cases" type="button" style="display: none;">
+          Проверить примеры
+        </button>
+
+        <select id="collection-select" aria-label="Набор обращений"></select>
+
+        <button class="secondary" id="test-collection" type="button">
+          Загрузить и проверить набор
+        </button>
+
+        <label class="secondary upload-label" for="upload-json">
+          Импорт JSON
+        </label>
+        <input id="upload-json" type="file" accept=".json,application/json" hidden>
+
+      </div>
+
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>Обращение</th>
+              <th>Категория</th>
+              <th>Приоритет</th>
+              <th>Уточнение</th>
+            </tr>
+          </thead>
+          <tbody id="results">
+            <tr id="empty-row"><td class="empty" colspan="4">Пока обращений нет.</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+  </main>
+
+  <script src="/app.js"></script>
+</body>
+</html>
